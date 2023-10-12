@@ -39,10 +39,13 @@ def build_config(config_path: str = None, master: str = None, app_name: str = No
     if app_name is None:
         app_name = app_name0
 
-    conf.update(confL["conf"])
+    newConf = confL.get("conf", {})
+    if conf is not None:
+        newConf.update(conf)
+    conf = newConf
 
     sparkConfig = SparkConf()
-    for k, v in conf:
+    for k, v in conf.items():
         if isinstance(v, list):
             v = ",".join(v)
         elif isinstance(v, str) and v.startswith("${{"):
@@ -50,7 +53,8 @@ def build_config(config_path: str = None, master: str = None, app_name: str = No
             value = os.environ.get(environment_variable_name, None)
             if value is None:
                 raise KeyError(f"The environment variable {environment_variable_name} was not found.")
-            sparkConfig.set(k, v)
+            v = value
+        sparkConfig.set(k, v)
 
     sparkConfig.setAppName(app_name)
     if master is not None:
