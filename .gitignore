@@ -61,6 +61,8 @@ local_settings.py
 db.sqlite3
 db.sqlite3-journal
 
+
+
 # Flask stuff:
 instance/
 .webassets-cache
@@ -77,6 +79,9 @@ target/
 
 # Jupyter Notebook
 .ipynb_checkpoints
+
+#IntelliJ stuff
+.idea/**
 
 # IPython
 profile_default/
