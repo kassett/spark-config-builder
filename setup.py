@@ -9,7 +9,7 @@ DESCRIPTION = 'Build an Apache Spark configuration easily using a config file.'
 # Setting up
 setup(
     name="spark-config-builder",
-    version='0.01',
+    version='0.02',
     author="kassett",
     author_email="samuel.chai.development@gmail.com",
     description=DESCRIPTION,

@@ -49,7 +49,7 @@ def build_config(config_path: str = None, master: str = None, app_name: str = No
         if isinstance(v, list):
             v = ",".join(v)
         elif isinstance(v, str) and v.startswith("${{"):
-            environment_variable_name = v[3:-1]
+            environment_variable_name = v[3:-2]
             value = os.environ.get(environment_variable_name, None)
             if value is None:
                 raise KeyError(f"The environment variable {environment_variable_name} was not found.")
